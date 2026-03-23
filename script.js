@@ -18,11 +18,15 @@ function saveClients() {
 form.addEventListener('submit', function(e) {
   e.preventDefault();
 
+  const nameInput = document.getElementById('name');
+  const emailInput = document.getElementById('email');
+  const statusInput = document.getElementById('status');
+
   const client = {
     id: Date.now(),
-    name: name.value,
-    email: email.value,
-    status: status.value
+    name: nameInput.value,
+    email: emailInput.value,
+    status: statusInput.value
   };
 
   clients.push(client);
