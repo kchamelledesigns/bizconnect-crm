@@ -34,15 +34,15 @@
   <section class="card">
     <h2>Add New Client</h2>
     <form id="clientForm">
-      <input type="text" id="name" placeholder="Client Name" required />
-      <input type="email" id="email" placeholder="Email" required />
-      <select id="status">
-        <option value="Lead">Lead</option>
-        <option value="In Progress">In Progress</option>
-        <option value="Closed">Closed</option>
-      </select>
-      <button type="submit">Add Client</button>
-    </form>
+  <input type="text" id="name" name="name" placeholder="Client Name" required autocomplete="off" />
+  <input type="email" id="email" name="email" placeholder="Email" required autocomplete="email" />
+  <select id="status" name="status" autocomplete="off">
+    <option value="Lead">Lead</option>
+    <option value="In Progress">In Progress</option>
+    <option value="Closed">Closed</option>
+  </select>
+  <button type="submit">Add Client</button>
+</form>
   </section>
 
   <!-- Client List -->
