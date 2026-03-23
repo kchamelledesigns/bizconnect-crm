@@ -1,13 +1,15 @@
 const form = document.getElementById('clientForm');
 const clientList = document.getElementById('clientList');
+const searchInput = document.getElementById('searchInput');
 
 const totalClientsEl = document.getElementById('totalClients');
 const totalLeadsEl = document.getElementById('totalLeads');
 const totalClosedEl = document.getElementById('totalClosed');
 
 let clients = JSON.parse(localStorage.getItem('clients')) || [];
+let editingId = null;
 
-// Save to localStorage
+// Save
 function saveClients() {
   localStorage.setItem('clients', JSON.stringify(clients));
 }
@@ -29,46 +31,94 @@ form.addEventListener('submit', function(e) {
   form.reset();
 });
 
-// Delete Client
+// Delete
 function deleteClient(id) {
   clients = clients.filter(client => client.id !== id);
   saveClients();
   renderClients();
 }
 
-// Render Clients
+// Enable Edit
+function editClient(id) {
+  editingId = id;
+  renderClients();
+}
+
+// Save Edit
+function saveEdit(id, newName, newEmail, newStatus) {
+  const client = clients.find(c => c.id === id);
+  client.name = newName;
+  client.email = newEmail;
+  client.status = newStatus;
+
+  editingId = null;
+  saveClients();
+  renderClients();
+}
+
+// Search filter
+searchInput.addEventListener('input', renderClients);
+
+// Render
 function renderClients() {
   clientList.innerHTML = '';
+
+  const searchTerm = searchInput.value.toLowerCase();
 
   let leads = 0;
   let closed = 0;
 
-  clients.forEach(client => {
-    if (client.status === 'Lead') leads++;
-    if (client.status === 'Closed') closed++;
+  clients
+    .filter(client =>
+      client.name.toLowerCase().includes(searchTerm) ||
+      client.email.toLowerCase().includes(searchTerm)
+    )
+    .forEach(client => {
 
-    const li = document.createElement('li');
-    li.className = 'client-item';
+      if (client.status === 'Lead') leads++;
+      if (client.status === 'Closed') closed++;
 
-    li.innerHTML = `
-      <div>
-        <strong>${client.name}</strong><br>
-        <small>${client.email}</small>
-      </div>
-      <div>
-        <span class="status ${client.status}">${client.status}</span>
-        <button class="delete-btn" onclick="deleteClient(${client.id})">X</button>
-      </div>
-    `;
+      const li = document.createElement('li');
+      li.className = 'client-item';
 
-    clientList.appendChild(li);
-  });
+      if (editingId === client.id) {
+        li.innerHTML = `
+          <input value="${client.name}" id="edit-name-${client.id}" />
+          <input value="${client.email}" id="edit-email-${client.id}" />
+          <select id="edit-status-${client.id}">
+            <option ${client.status === 'Lead' ? 'selected' : ''}>Lead</option>
+            <option ${client.status === 'In Progress' ? 'selected' : ''}>In Progress</option>
+            <option ${client.status === 'Closed' ? 'selected' : ''}>Closed</option>
+          </select>
+          <button class="save-btn" onclick="saveEdit(
+            ${client.id},
+            document.getElementById('edit-name-${client.id}').value,
+            document.getElementById('edit-email-${client.id}').value,
+            document.getElementById('edit-status-${client.id}').value
+          )">Save</button>
+        `;
+      } else {
+        li.innerHTML = `
+          <div>
+            <strong>${client.name}</strong><br>
+            <small>${client.email}</small>
+          </div>
+          <div>
+            <span class="status ${client.status}">${client.status}</span>
+            <button class="edit-btn" onclick="editClient(${client.id})">Edit</button>
+            <button class="delete-btn" onclick="deleteClient(${client.id})">X</button>
+          </div>
+        `;
+      }
 
-  // Update stats
+      clientList.appendChild(li);
+    });
+
+  // Stats
   totalClientsEl.textContent = clients.length;
   totalLeadsEl.textContent = leads;
   totalClosedEl.textContent = closed;
 }
 
-// Initial render
+// Init
 renderClients();
