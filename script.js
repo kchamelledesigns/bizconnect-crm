@@ -30,20 +30,4 @@ form.addEventListener('submit', function(e) {
     name: nameInput.value,
     email: emailInput.value,
     status: statusInput.value
-  };
-
-  clients.push(client);
-  saveClients();
-  renderClients();
-  form.reset();
-});
-
-// Delete
-function deleteClient(id) {
-  clients = clients.filter(client => client.id !== id);
-  saveClients();
-  renderClients();
-}
-
-// Enable Edit
 renderClients();
