@@ -73,10 +73,11 @@ function renderClients() {
   let closed = 0;
 
   clients
-    .filter(client =>
-      client.name.toLowerCase().includes(searchTerm) ||
-      client.email.toLowerCase().includes(searchTerm)
-    )
+  .filter(client => {
+    const name = (client.name || '').toLowerCase();
+    const email = (client.email || '').toLowerCase();
+    return name.includes(searchTerm) || email.includes(searchTerm);
+  })
     .forEach(client => {
 
       if (client.status === 'Lead') leads++;
