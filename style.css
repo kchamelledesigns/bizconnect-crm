@@ -88,3 +88,21 @@ button:hover {
   border-radius: 5px;
   margin-left: 10px;
 }
+
+#searchInput {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.edit-btn {
+  background: #2563eb;
+  margin-left: 5px;
+}
+
+.save-btn {
+  background: green;
+  margin-left: 5px;
+}
