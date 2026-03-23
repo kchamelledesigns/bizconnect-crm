@@ -14,28 +14,44 @@
 
   <main class="container">
 
-    <!-- Add Client Form -->
-    <section class="card">
-      <h2>Add New Client</h2>
-      <form id="clientForm">
-        <input type="text" id="name" placeholder="Client Name" required />
-        <input type="email" id="email" placeholder="Email" required />
-        <select id="status">
-          <option value="Lead">Lead</option>
-          <option value="In Progress">In Progress</option>
-          <option value="Closed">Closed</option>
-        </select>
-        <button type="submit">Add Client</button>
-      </form>
-    </section>
+  <!-- Dashboard -->
+  <section class="card stats">
+    <div>
+      <h3 id="totalClients">0</h3>
+      <p>Total Clients</p>
+    </div>
+    <div>
+      <h3 id="totalLeads">0</h3>
+      <p>Leads</p>
+    </div>
+    <div>
+      <h3 id="totalClosed">0</h3>
+      <p>Closed</p>
+    </div>
+  </section>
 
-    <!-- Client List -->
-    <section class="card">
-      <h2>Client List</h2>
-      <ul id="clientList"></ul>
-    </section>
+  <!-- Add Client -->
+  <section class="card">
+    <h2>Add New Client</h2>
+    <form id="clientForm">
+      <input type="text" id="name" placeholder="Client Name" required />
+      <input type="email" id="email" placeholder="Email" required />
+      <select id="status">
+        <option value="Lead">Lead</option>
+        <option value="In Progress">In Progress</option>
+        <option value="Closed">Closed</option>
+      </select>
+      <button type="submit">Add Client</button>
+    </form>
+  </section>
 
-  </main>
+  <!-- Client List -->
+  <section class="card">
+    <h2>Client List</h2>
+    <ul id="clientList"></ul>
+  </section>
+
+</main>
 
   <script src="script.js"></script>
 </body>
