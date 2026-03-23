@@ -1,1 +1,42 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BizConnect CRM</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
 
+  <header class="header">
+    <h1>BizConnect CRM</h1>
+    <p>Manage your clients, deals, and growth.</p>
+  </header>
+
+  <main class="container">
+
+    <!-- Add Client Form -->
+    <section class="card">
+      <h2>Add New Client</h2>
+      <form id="clientForm">
+        <input type="text" id="name" placeholder="Client Name" required />
+        <input type="email" id="email" placeholder="Email" required />
+        <select id="status">
+          <option value="Lead">Lead</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Closed">Closed</option>
+        </select>
+        <button type="submit">Add Client</button>
+      </form>
+    </section>
+
+    <!-- Client List -->
+    <section class="card">
+      <h2>Client List</h2>
+      <ul id="clientList"></ul>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
