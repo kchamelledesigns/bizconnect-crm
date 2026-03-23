@@ -22,6 +22,9 @@ form.addEventListener('submit', function(e) {
   const emailInput = document.getElementById('email');
   const statusInput = document.getElementById('status');
 
+  // Prevent empty or autofill undefined values
+  if (!nameInput.value || !emailInput.value) return;
+
   const client = {
     id: Date.now(),
     name: nameInput.value,
@@ -67,17 +70,17 @@ searchInput.addEventListener('input', renderClients);
 function renderClients() {
   clientList.innerHTML = '';
 
-  const searchTerm = searchInput.value.toLowerCase();
+  const searchTerm = (searchInput.value || '').toLowerCase();
 
   let leads = 0;
   let closed = 0;
 
   clients
-  .filter(client => {
-    const name = (client.name || '').toLowerCase();
-    const email = (client.email || '').toLowerCase();
-    return name.includes(searchTerm) || email.includes(searchTerm);
-  })
+    .filter(client => {
+      const name = (client.name || '').toLowerCase();
+      const email = (client.email || '').toLowerCase();
+      return name.includes(searchTerm) || email.includes(searchTerm);
+    })
     .forEach(client => {
 
       if (client.status === 'Lead') leads++;
