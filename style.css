@@ -61,7 +61,30 @@ button:hover {
   border-radius: 5px;
   color: white;
 }
-
+  
 .status.Lead { background: gray; }
 .status["In Progress"] { background: orange; }
 .status.Closed { background: green; }
+
+.stats {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.stats div {
+  flex: 1;
+}
+
+.stats h3 {
+  font-size: 2rem;
+  margin: 0;
+  color: #1e3a8a;
+}
+
+.delete-btn {
+  background: red;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-left: 10px;
+}
