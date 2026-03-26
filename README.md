@@ -30,6 +30,7 @@ A lightweight, modern Customer Relationship Management (CRM) web app built with 
 ### 📈 Dashboard Screenshots
 
 [Image 001](images/001-BizConnect-CRM.png)\
+[Image 002](images/002-BizConnect-CRM.png)\
 
 ---
 
