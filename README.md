@@ -35,8 +35,8 @@ A lightweight, modern Customer Relationship Management (CRM) web app built with 
 
 ### 🚀 Installation / Deployment
 
-- Clone or download this repository.\
-- Open index.html in your browser or deploy using GitHub Pages for online access.\
+- Clone or download this repository.
+- Open index.html in your browser or deploy using GitHub Pages for online access.
 - Start inputting and saving your clients instantly!
 
 ---
